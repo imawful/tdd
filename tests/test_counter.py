@@ -83,3 +83,15 @@ class TestCounterEndPoints:
         result = client.get('/counters/idontexist')
         assert result.status_code == status.HTTP_404_NOT_FOUND
 
+    def test_delete_a_counter(self, client):
+        #create a counter
+        result = client.post('/counters/cilab_counter')
+        assert result.status_code == status.HTTP_201_CREATED
+        
+        #delete the created counter
+        result2 = client.delete('/counters/cilab_counter')
+        assert result2.status_code == status.HTTP_204_NO_CONTENT
+
+        #try to delete again
+        result3 = client.delete('/counters/cilab_counter')
+        assert result3.status_code == status.HTTP_404_NOT_FOUND
