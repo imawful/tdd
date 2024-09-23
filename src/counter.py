@@ -1,8 +1,6 @@
 from flask import Flask
 from . import status
-
 app = Flask(__name__)
-
 COUNTERS = {}
 
 @app.route('/counters/<name>', methods=['POST'])
@@ -16,8 +14,6 @@ def create_counter(name):
     return {name: COUNTERS[name]}, status.HTTP_201_CREATED
 
 
-
-
 @app.route('/counters/<name>', methods=['PUT'])
 def update_counter(name):
     ''' Update a counter '''
@@ -28,6 +24,7 @@ def update_counter(name):
     COUNTERS[name] += 1
     return {name: COUNTERS[name]}, status.HTTP_200_OK
 
+
 @app.route('/counters/<name>', methods=['GET'])
 def read_counter(name):
     ''' Read from counter '''
@@ -36,6 +33,3 @@ def read_counter(name):
     if name not in COUNTERS:
         return {"Message": f"Counter {name} does not exist"}, status.HTTP_404_NOT_FOUND
     return {name: COUNTERS[name]}, status.HTTP_200_OK
-
-
-
