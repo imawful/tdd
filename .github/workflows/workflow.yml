@@ -33,7 +33,7 @@ jobs:
       - name: Run unit tests with pytest
         run: pytest -v --tb=short --color=yes --cov=src --cov-report=term-missing --html=pytest_report.html 
       - name: Upload pytest report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: pytest-report
           path: pytest_report.html
